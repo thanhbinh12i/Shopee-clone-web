@@ -37,7 +37,11 @@ export default function ProductDetail() {
     staleTime: 3 * 60 * 1000,
     enabled: Boolean(product)
   })
-  const addToCartMutation = useMutation(purchaseApi.addToCart)
+  const addToCartMutation = useMutation({
+    mutationFn: (body: { product_id: string; buy_count: number }) => {
+      return purchaseApi.addToCart(body)
+    }
+  })
 
   useEffect(() => {
     if (product && product.images.length > 0) {

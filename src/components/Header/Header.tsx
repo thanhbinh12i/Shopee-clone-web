@@ -12,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { omit } from "lodash";
 import { purchasesStatus } from "src/constants/purchase";
 import purchaseApi from "src/apis/purchase.api";
-import noproduct from 'src/assets/no-product.png'
+import noproduct from 'src/assets/images/no-product.png'
 import { formatCurrency } from "src/utils/utils";
 
 type FormData = Pick<Schema, 'name'>
@@ -59,11 +59,11 @@ export default function Header() {
       search: createSearchParams(config).toString()
     })
   })
-  const { data: purchaseInCartData } = useQuery({
+  const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status: purchasesStatus.inCart }],
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart })
   })
-  const purchaseInCart = purchaseInCartData?.data.data
+  const purchasesInCart = purchasesInCartData?.data.data
   return (
     <>
       <div className='bg-[linear-gradient(-180deg,#f53d2d,#f63)] pb-5 pt-2 text-white'>
@@ -192,11 +192,11 @@ export default function Header() {
               <Popover
                 renderPopover={
                   <div className='relative max-w-[400px] rounded-sm border border-gray-200 bg-white text-sm shadow-md'>
-                    {purchaseInCart ? (
+                    {purchasesInCart ? (
                       <div className='p-2'>
                         <div className='capitalize text-gray-400'>Sản phẩm mới thêm</div>
                         <div className='mt-5'>
-                          {purchaseInCart.slice(0, MAX_PURCHASES).map((purchase) => (
+                          {purchasesInCart.slice(0, MAX_PURCHASES).map((purchase) => (
                             <div className='mt-2 flex py-2 hover:bg-gray-100' key={purchase._id}>
                               <div className='flex-shrink-0'>
                                 <img
@@ -216,7 +216,7 @@ export default function Header() {
                         </div>
                         <div className='mt-6 flex items-center justify-between'>
                           <div className='text-xs capitalize text-gray-500'>
-                            {purchaseInCart.length > MAX_PURCHASES ? purchaseInCart.length - MAX_PURCHASES : ''} Thêm
+                            {purchasesInCart.length > MAX_PURCHASES ? purchasesInCart.length - MAX_PURCHASES : ''} Thêm
                             hàng vào giỏ
                           </div>
                           <button className='rounded-sm bg-orange px-4 py-2 capitalize text-white hover:bg-opacity-90'>
@@ -249,7 +249,7 @@ export default function Header() {
                     />
                   </svg>
                   <span className='absolute left-[17px] top-[-5px] rounded-full bg-white px-[9px] py-[1px] text-xs text-orange '>
-                    {purchaseInCart?.length}
+                    {purchasesInCart?.length}
                   </span>
                 </Link>
               </Popover>
