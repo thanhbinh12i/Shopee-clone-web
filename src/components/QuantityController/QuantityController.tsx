@@ -5,9 +5,10 @@ interface Props extends InputNumberProps {
   onIncrease?: (value: number) => void
   onDecrease?: (value: number) => void
   onInputNumber?: (value: number) => void
+  classNameWrapper?: string
 }
 
-export default function QuantityController({ max, onIncrease, onDecrease, onInputNumber, value, ...rest }: Props) {
+export default function QuantityController({ max, onIncrease, onDecrease, onInputNumber, value, classNameWrapper = 'ml-10', ...rest }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let _value = Number(e.target.value)
     if (max !== undefined && _value > max) {
@@ -33,7 +34,7 @@ export default function QuantityController({ max, onIncrease, onDecrease, onInpu
   }
   return (
     <>
-      <div className='ml-10 flex items-center'>
+      <div className={'flex items-center ' + classNameWrapper}>
         <button className='flex h-8 w-8 items-center justify-center rounded-l-sm border border-gray-300 text-gray-600' onClick={decrease}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
