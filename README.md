@@ -298,7 +298,7 @@ Body:
 {
   "address": "Việt Nam",
   "date_of_birth": "1907-02-18T17:17:56.000Z",
-  "name": "Dư Thanh Được",
+  "name": "Binhdaynee",
   "phone": "04511414",
   "avatar": "URL Avatar",
   "password": "Mật khẩu cũ",
