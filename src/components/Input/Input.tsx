@@ -33,7 +33,7 @@ export default function Input({ type, errorMessage, placeholder, className, name
   }
   return (
     <>
-      <div className={className}>
+      <div className={'relative ' + className}>
         <input
           type={handleType()}
           className={classNameInput}
