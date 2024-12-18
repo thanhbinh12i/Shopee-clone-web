@@ -59,7 +59,6 @@ export default function useRouteElements() {
               <Suspense>
                 <Register />
               </Suspense>
-
             </RegisterLayout>
           )
         }
@@ -129,8 +128,9 @@ export default function useRouteElements() {
       path: "*",
       element: (
         <MainLayout>
-          <Suspense></Suspense>
-          <NotFound />
+          <Suspense>
+            <NotFound />
+          </Suspense>
         </MainLayout>
       )
     }

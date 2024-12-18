@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { registerAccount } from "src/apis/auth.api"
 import Input from "src/components/Input"
 import { schema, Schema } from "src/utils/rules"
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import { isAxiosUnprocessableEntityError } from "src/utils/utils"
 import { ErrorResponse } from "src/types/utils.type"
 import Button from "src/components/Button"

@@ -10,7 +10,7 @@ import { Schema, schema } from "src/utils/rules";
 import { NoUndefinedField } from 'src/types/utils.type'
 import { yupResolver } from "@hookform/resolvers/yup";
 import RatingStar from "../RatingStar";
-import { omit } from "lodash";
+import omit from 'lodash/omit'
 
 interface Props {
   queryConfig: QueryConfig
