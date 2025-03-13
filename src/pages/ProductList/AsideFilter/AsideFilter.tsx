@@ -11,6 +11,7 @@ import { NoUndefinedField } from 'src/types/utils.type'
 import { yupResolver } from "@hookform/resolvers/yup";
 import RatingStar from "../RatingStar";
 import omit from 'lodash/omit'
+import { useTranslation } from "react-i18next";
 
 interface Props {
   queryConfig: QueryConfig
@@ -21,6 +22,7 @@ type FormData = NoUndefinedField<Pick<Schema, 'price_max' | 'price_min'>>
 const priceSchema = schema.pick(['price_min', 'price_max'])
 
 export default function AsideFilter({ queryConfig, categories }: Props) {
+  const { t } = useTranslation('home')
   const { category } = queryConfig
   const navigate = useNavigate()
   const {
@@ -71,7 +73,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
               </g>
             </g>
           </svg>
-          Tất cả danh mục
+          {t('aside filter.all categories')}
         </Link>
         <div className='my-4 h-[1px] bg-gray-300' />
         <ul>
@@ -117,11 +119,11 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
               />
             </g>
           </svg>
-          Bộ lọc tìm kiếm
+          {t('aside filter.filter search')}
         </Link>
         <div className='my-4 h-[1px] bg-gray-300' />
         <div className='my-5'>
-          <div>Khoản giá</div>
+          <div>{t('aside filter.price')}</div>
           <form className='mt-2' onSubmit={onSubmit}>
             <div className='flex items-start'>
               <Controller control={control} name="price_min"
@@ -170,7 +172,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
           </form>
         </div>
         <div className='my-4 h-[1px] bg-gray-300' />
-        <div className='text-sm'>Đánh giá</div>
+        <div className='text-sm'>{t('aside filter.rating')}</div>
         <RatingStar queryConfig={queryConfig} />
         <div className='my-4 h-[1px] bg-gray-300' />
         <Button onClick={handleRemoveAll} className='flex w-full items-center justify-center bg-orange p-2 text-sm uppercase text-white hover:bg-orange/80'>

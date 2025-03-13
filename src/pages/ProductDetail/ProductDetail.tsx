@@ -12,8 +12,10 @@ import purchaseApi from 'src/apis/purchase.api'
 import { purchasesStatus } from 'src/constants/purchase'
 import { toast } from 'react-toastify'
 import path from 'src/constants/path'
+import { useTranslation } from 'react-i18next'
 
 export default function ProductDetail() {
+  const { t } = useTranslation(['product'])
   const queryClient = useQueryClient()
   const [buyCount, setBuyCount] = useState(1)
   const { nameId } = useParams()
@@ -188,20 +190,20 @@ export default function ProductDetail() {
                   <div className='mx-4 h-4 w-[1px] bg-gray-300'></div>
                   <div>
                     <span>{formatNumberToSocialStyle(product.sold)}</span>
-                    <span className='ml-1 text-gray-500'>Đã bán</span>
+                    <span className='ml-1 text-gray-500'>{t('product:sold')}</span>
                   </div>
                 </div>
                 <div className='mt-8 flex items-center bg-gray-50 px-5 py-4'>
                   <div className='text-gray-500 line-through'>₫{formatCurrency(product.price_before_discount)}</div>
                   <div className='ml-3 text-3xl font-medium text-orange'>₫{formatCurrency(product.price)}</div>
                   <div className='ml-4 rounded-sm bg-orange px-1 py-[2px] text-xs font-semibold uppercase text-white'>
-                    {rateSale(product.price_before_discount, product.price)} giảm
+                    {rateSale(product.price_before_discount, product.price)} {t('product:sale')}
                   </div>
                 </div>
                 <div className='mt-8 flex items-center'>
-                  <div className='capitalize text-gray-500'>Số lượng</div>
+                  <div className='capitalize text-gray-500'>{t('product:quantity')}</div>
                   <QuantityController onDecrease={handleByCount} onIncrease={handleByCount} onType={handleByCount} value={buyCount} max={product.quantity} />
-                  <div className='ml-6 text-sm text-gray-500'>{product.quantity} sản phẩm có sẵn</div>
+                  <div className='ml-6 text-sm text-gray-500'>{product.quantity} {t('product:available')}</div>
                 </div>
                 <div className='mt-8 flex items-center'>
                   <button onClick={addToCart} className='flex h-12 items-center justify-center rounded-sm border border-orange bg-orange/10 px-5 capitalize text-orange shadow-sm hover:bg-orange/5'>
@@ -228,10 +230,10 @@ export default function ProductDetail() {
                         <line fill='none' strokeLinecap='round' strokeMiterlimit={10} x1={9} x2={9} y1='8.5' y2='5.5' />
                       </g>
                     </svg>
-                    Thêm vào giỏ hàng
+                    {t('product:addToCart')}
                   </button>
                   <button onClick={buyNow} className='fkex ml-4 h-12 min-w-[5rem] items-center justify-center rounded-sm bg-orange px-5 capitalize text-white shadow-sm outline-none hover:bg-orange/90'>
-                    Mua ngay
+                    {t('product:buyNow')}
                   </button>
                 </div>
               </div>
